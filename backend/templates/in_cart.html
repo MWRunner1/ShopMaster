@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Resumen de Compras</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 2rem;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #555;
+        text-align: center;
+      }
+      .purchase-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        background-color: #fafafa;
+      }
+      .purchase-card h2 {
+        margin-top: 0;
+        color: #007bff;
+      }
+      .purchase-item {
+        margin-bottom: 0.5rem;
+      }
+      .empty-cart {
+        text-align: center;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Purchase history</h1>
+
+      {% if purchases %} {% for purchase in purchases %}
+      <div class="purchase-card">
+        <h2>Cart #{{ loop.index }}</h2>
+        {% for item in purchase %}
+        <div class="purchase-item">
+          <strong>{{ item.name }}</strong>
+          - Quantity: {{ item.quantity }} - Price: ${{ item.price }}
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %} {% else %}
+      <p class="empty-cart">Cart is empty</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
