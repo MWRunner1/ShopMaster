@@ -23,7 +23,7 @@ export default function ProductModal({ product, onClose }) {
           />
           <div className={styles.modalDetails}>
             <h2>{product.name}</h2>
-            <p className={styles.modalPrice}>${product.price}</p>
+            <p className={styles.modalPrice}>Price: ${product.price}</p>
             <p>{product.description}</p>
             {/* You can add more details here, like a "Add to Cart" button */}
             <button

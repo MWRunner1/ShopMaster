@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../store/CartContext";
 import styles from "./CartDetails.module.css";
 import { toast } from "react-toastify";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function CartDetails() {
   const { cartItems, removeFromCart, clearCart } = useContext(CartContext);
@@ -60,7 +60,12 @@ export default function CartDetails() {
                   {item.name} - ${item.price} x {item.quantity}
                 </h3>
               </div>
-              <button onClick={() => removeFromCart(item.id)}>Remove</button>
+              <button
+                className={styles.removeBtn}
+                onClick={() => removeFromCart(item.id)}
+              >
+                Remove
+              </button>
             </li>
           ))}
         </ul>
@@ -73,8 +78,9 @@ export default function CartDetails() {
               .reduce((total, item) => total + item.price * item.quantity, 0)
               .toFixed(2)}
           </h2>
-          <button onClick={handleSubmitOrder}>Complete Order</button>
-          <Link to={"http://127.0.0.1:5000/in_cart"}>Text-only order</Link>
+          <button className={styles.submitBtn} onClick={handleSubmitOrder}>
+            Complete Order
+          </button>
         </div>
       )}
     </div>

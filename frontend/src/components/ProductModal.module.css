@@ -17,6 +17,7 @@
   border-radius: 8px;
   max-width: 800px;
   width: 90%;
+  justify-content: center;
   position: relative;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -40,8 +41,10 @@
 }
 
 .modalImage {
+  align-self: center;
+  border-radius: 8px;
   width: 100%;
-  max-width: 300px;
+  max-width: 500px;
   height: auto;
   object-fit: contain;
 }
@@ -55,7 +58,7 @@
 .modalAddToCart {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
-  background-color: #007bff;
+  background-color: #053049;
   color: white;
   border: none;
   border-radius: 4px;

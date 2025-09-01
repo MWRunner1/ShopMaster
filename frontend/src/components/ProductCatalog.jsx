@@ -96,77 +96,83 @@ export default function ProductCatalog() {
 
   return (
     <div>
-      {}
-      <div className={styles.filterContainer}>
-        <div>
-          <label htmlFor="category">Filter by Category:</label>
-          <select
-            id="category"
-            value={category}
-            onChange={(e) => handleCategoryChange(e)}
-          >
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="sort">Sort by:</label>
-          <select
-            id="sort"
-            value={sort}
-            onChange={(e) => setSort(e.target.value)}
-          >
-            {sortOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
       {loading ? (
         <p>Loading products...</p>
       ) : error ? (
-        <>
+        <div className={styles.errorContainer}>
           <p>Error loading products: {error}</p>
           <button onClick={fetchProducts}>Retry</button>
-        </>
+        </div>
       ) : (
-        <ul className={styles.productCatalog}>
-          {currentProducts.map((product) => {
-            return (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onClick={() => openModal(product)}
-              />
-            );
-          })}
-        </ul>
-      )}
-
-      <div className={styles.pagination}>
-        <button
-          onClick={() => handlePageChange(page - 1)}
-          disabled={page === 1}
-        >
-          Previous
-        </button>
-        <span>
-          Page {page} of {totalPages}
-        </span>
-        <button
-          onClick={() => handlePageChange(page + 1)}
-          disabled={page === totalPages}
-        >
-          Next
-        </button>
-      </div>
-      {isModalOpen && (
-        <ProductModal product={selectedProduct} onClose={closeModal} />
+        <>
+          <div className={styles.filterContainer}>
+            <div className={styles.filterGroup}>
+              <label htmlFor="category">Filter by Category: </label>
+              <select
+                className={styles.categorySelector}
+                id="category"
+                value={category}
+                onChange={(e) => handleCategoryChange(e)}
+              >
+                {categories.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
+                ))}
+              </select>
+              <span className={styles.selectArrow}></span>
+            </div>
+            <div className={styles.filterGroup}>
+              <label htmlFor="sort">Sort by: </label>
+              <select
+                className={styles.sortSelector}
+                id="sort"
+                value={sort}
+                onChange={(e) => setSort(e.target.value)}
+              >
+                {sortOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <span className={styles.selectArrow}></span>
+            </div>
+          </div>
+          <ul className={styles.productCatalog}>
+            {currentProducts.map((product) => {
+              return (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onClick={() => openModal(product)}
+                />
+              );
+            })}
+          </ul>
+          <div className={styles.pagination}>
+            <button
+              className={styles.pageButton}
+              onClick={() => handlePageChange(page - 1)}
+              disabled={page === 1}
+            >
+              Previous
+            </button>
+            <span>
+              Page {page} of {totalPages}
+            </span>
+            <button
+              className={styles.pageButton}
+              onClick={() => handlePageChange(page + 1)}
+              disabled={page === totalPages}
+            >
+              Next
+            </button>
+          </div>
+          {isModalOpen && (
+            <ProductModal product={selectedProduct} onClose={closeModal} />
+          )}
+        </>
       )}
     </div>
   );

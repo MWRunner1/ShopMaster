@@ -9,7 +9,6 @@ export function ProductsProvider({ children }) {
   const [error, setError] = useState(null);
 
   async function fetchProducts() {
-    console.log("Fetching products...");
     setLoading(true);
     setError(null);
     try {

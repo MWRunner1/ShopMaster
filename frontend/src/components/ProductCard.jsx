@@ -5,10 +5,14 @@ import { CartContext } from "../store/CartContext";
 export default function ProductCard({ product, onClick }) {
   const { addToCart } = useContext(CartContext);
 
+  function handleAddToCart(e) {
+    e.stopPropagation();
+    addToCart(product);
+  }
+
   return (
-    <li className={styles.product} key={product.id}>
+    <li className={styles.product} key={product.id} onClick={onClick}>
       <img
-        onClick={onClick}
         className={styles.productImage}
         src={product.image}
         alt={product.name}
@@ -18,8 +22,12 @@ export default function ProductCard({ product, onClick }) {
         <h2>{product.name}</h2>
         <p>${product.price}</p>
         <p>{product.product_category.name}</p>
-        <button onClick={onClick}>Learn More</button>
-        <button onClick={() => addToCart(product)}>Add to Cart</button>
+        <button className={styles.productButton} onClick={onClick}>
+          Learn More
+        </button>
+        <button className={styles.productButton} onClick={handleAddToCart}>
+          Add to Cart
+        </button>
       </div>
     </li>
   );
