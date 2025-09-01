@@ -16,7 +16,7 @@ Después de descargar el repositorio, navega hasta la carpeta raíz ShopMaster y
 python run.py
 ```
 
-Este archivo instalará las dependencias necesarias de React y Flask, compilará el código y ejecutará el servidor de Flask, el cual expone el la API y servirá el build de React.
+Este archivo instalará las dependencias necesarias de React y Flask, compilará el código y ejecutará el servidor de Flask, el cual expone la API y servirá el build de React.
 
 La página web se podrá acceder en http://127.0.0.1:5000/
 
