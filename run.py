@@ -14,7 +14,6 @@ STATIC_FOLDER_PATH = os.path.join(BACKEND_PATH, "static")
 def run_command(command, cwd=None):
     """A helper function to run shell commands with error handling."""
     print(f"Executing command: {' '.join(command)} in directory: {cwd or os.getcwd()}")
-    print(f"Attempting to run npm in: {absolute_frontend_path}")
     try:
         # Pass the command as a list of arguments, which is safer
         subprocess.run(command, check=True, cwd=cwd, shell=True)
